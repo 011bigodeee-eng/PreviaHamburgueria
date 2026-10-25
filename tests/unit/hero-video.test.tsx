@@ -92,7 +92,7 @@ describe("cinematic player lifecycle (mocked browser media APIs; no real video s
   test("absent assets and reduced motion render only the poster", () => {
     const view = render(<HeroVideo media={{ ...base, sources: [] }} />);
     expect(document.querySelector("video")).toBeNull();
-    expect(screen.getByText(/VÍDEO A ADICIONAR/)).toBeTruthy();
+    expect(screen.getByText(/FIRE. FLAVOR. OBSESSION./)).toBeTruthy();
     reduced = true;
     view.rerender(<HeroVideo media={base} />);
     expect(document.querySelector("video")).toBeNull();

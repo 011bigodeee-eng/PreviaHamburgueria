@@ -252,7 +252,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
           </button>
         </div>
       )}
-      <header className={scrolled ? "scrolled" : ""}>
+      <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
         <a
           className="logo"
           href="#inicio"
@@ -285,7 +285,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
             }}
           >
             <ShoppingBag size={21} />
-            <span>{count}</span>
+            <span key={count}>{count}</span>
           </button>
           <a href="#cardapio" className="button small header-order">
             PEDIR AGORA <ArrowUpRight size={15} />
@@ -294,13 +294,18 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
             className="icon-button mobile-toggle"
             aria-label={mobile ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobile}
+            aria-controls="mobile-navigation"
             onClick={() => setMobile(!mobile)}
           >
             {mobile ? <X /> : <Menu />}
           </button>
         </div>
         {mobile && (
-          <nav className="mobile-nav" aria-label="Navegação mobile">
+          <nav
+            id="mobile-navigation"
+            className="mobile-nav"
+            aria-label="Navegação mobile"
+          >
             {nav.map(([label, id]) => (
               <a
                 key={id}
@@ -316,7 +321,14 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
         )}
       </header>
       <main>
-        <CinematicHero media={heroMedia} />
+        <CinematicHero
+          media={heroMedia}
+          hasItems={count > 0}
+          onOpenCart={() => {
+            setDrawer(true);
+            setCheckout(false);
+          }}
+        />
         <div className="manifesto-strip">
           <span>FIRE.</span>
           <Flame />

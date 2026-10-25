@@ -109,3 +109,11 @@ Para ativar a cena, adicione `public/videos/brasa-noir-hero.webm` e/ou `public/v
 Os estilos específicos estão em `src/app/cinematic-hero.css`; o restante do catálogo, carrinho e checkout foi preservado. `npm run test:unit` valida descoberta de arquivos e o ciclo de vida do player com APIs de mídia simuladas. Esses testes **não** validam decodificação de um vídeo real, sua qualidade cinematográfica ou o loop final. A suíte de navegador também confere o fallback sem requisições para vídeos ausentes.
 
 A marca exibida no site, nos metadados e nas mensagens de pedido é **Acordeon Hamburgueria**, centralizada em `src/config/business.ts`. Identificadores técnicos antigos de arquivos e armazenamento foram preservados para manter compatibilidade com a configuração e os carrinhos existentes.
+
+## Refinamento do hero e header
+
+A composição atual mantém a marca **Acordeon Hamburgueria**, com título em três níveis, contraste serifado na palavra “fogo”, reveal vertical em Motion e entrada curta dos CTAs. No mobile, o burger ocupa uma linha própria antes dos botões; no desktop, permanece à direita. Header e navegação compactam em tablets, preservam o link ativo e indicam o carrinho. “Fazer meu pedido” leva ao cardápio quando o carrinho está vazio e reabre o pedido já iniciado quando há itens.
+
+O aviso técnico “PRÉVIA ESTÁTICA · VÍDEO A ADICIONAR” foi removido da interface pública. O poster ilustrativo atual foi preservado; **não há arquivos de vídeo ativos no checkout após a reversão solicitada**. Os caminhos e o player com fallback continuam preparados conforme o guia de mídia, e vídeos novos exigem build/deployment. Essa alteração não restaura o vídeo anteriormente removido.
+
+Arquivos principais desta composição: `src/components/home/CinematicHero.tsx`, `HeroVideo.tsx`, `src/app/cinematic-hero.css` e a ligação com o header/carrinho em `src/components/Storefront.tsx`. Catálogo, preços e checkout foram preservados.

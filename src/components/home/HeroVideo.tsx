@@ -53,13 +53,7 @@ export default function HeroVideo({ media }: { media: HeroMedia }) {
         />
       )}
       <div className="cinema-vignette" aria-hidden="true" />
-      <span className="cinema-caption">
-        {sources.length === 0
-          ? "PRÉVIA ESTÁTICA · VÍDEO A ADICIONAR"
-          : reduced
-            ? "MOVIMENTO REDUZIDO · IMAGEM ESTÁTICA"
-            : "FIRE. FLAVOR. OBSESSION."}
-      </span>
+      <span className="cinema-caption">FIRE. FLAVOR. OBSESSION.</span>
     </div>
   );
 }

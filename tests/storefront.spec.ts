@@ -134,7 +134,7 @@ test("retirada dispensa endereço e dinheiro exige troco suficiente", async ({
   );
 });
 
-for (const width of [320, 390, 430, 1440])
+for (const width of [320, 390, 430, 900, 1440])
   test(`layout sem overflow e navegação em ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
@@ -144,7 +144,7 @@ for (const width of [320, 390, 430, 1440])
         () => document.documentElement.scrollWidth <= window.innerWidth,
       ),
     ).toBe(true);
-    if (width < 760) {
+    if (width <= 1024) {
       await page
         .getByRole("button", { name: "Abrir menu", exact: true })
         .click();
@@ -281,7 +281,7 @@ test("hero cinematográfico sem mídia usa poster e não solicita vídeos inexis
   await page.waitForLoadState("networkidle");
   await expect(page.locator(".cinema-poster")).toBeVisible();
   await expect(page.locator(".cinema-caption")).toContainText(
-    "PRÉVIA ESTÁTICA",
+    "FIRE. FLAVOR. OBSESSION.",
   );
   await expect(page.locator(".cinema-scene video")).toHaveCount(0);
   expect(videoRequests).toEqual([]);
@@ -293,4 +293,26 @@ test("hero cinematográfico sem mídia usa poster e não solicita vídeos inexis
   ).toHaveAttribute("href", "#cardapio");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator(".cinema-scene video")).toHaveCount(0);
+});
+
+test("CTA do hero inicia pedido vazio e retoma carrinho existente", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const order = page.getByRole("link", {
+    name: "FAZER MEU PEDIDO",
+    exact: true,
+  });
+  await order.click();
+  await expect(page).toHaveURL(/#cardapio$/);
+  await page
+    .getByRole("button", { name: "Adicionar Noir Classic", exact: true })
+    .click();
+  await page.getByRole("button", { name: /ADICIONAR ·/ }).click();
+  await page
+    .getByRole("link", { name: "Acordeon Hamburgueria, início" })
+    .click();
+  await order.click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.locator(".cart-item")).toHaveCount(1);
 });
