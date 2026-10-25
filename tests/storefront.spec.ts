@@ -267,3 +267,30 @@ test("fluxo de compra mobile e recuperação de armazenamento inválido", async 
     ),
   ).toBe(true);
 });
+
+test("hero cinematográfico sem mídia usa poster e não solicita vídeos inexistentes", async ({
+  page,
+}) => {
+  const videoRequests: string[] = [];
+  page.on("request", (request) => {
+    if (/\.(mp4|webm)(\?|$)/.test(request.url()))
+      videoRequests.push(request.url());
+  });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  await expect(page.locator(".cinema-poster")).toBeVisible();
+  await expect(page.locator(".cinema-caption")).toContainText(
+    "PRÉVIA ESTÁTICA",
+  );
+  await expect(page.locator(".cinema-scene video")).toHaveCount(0);
+  expect(videoRequests).toEqual([]);
+  await expect(
+    page.getByRole("link", { name: "EXPLORAR CARDÁPIO", exact: true }),
+  ).toHaveAttribute("href", "#cardapio");
+  await expect(
+    page.getByRole("link", { name: "FAZER MEU PEDIDO", exact: true }),
+  ).toHaveAttribute("href", "#cardapio");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".cinema-scene video")).toHaveCount(0);
+});

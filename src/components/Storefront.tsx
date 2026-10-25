@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
-  ArrowDown,
   ArrowRight,
   Flame,
   Menu,
@@ -26,6 +25,8 @@ import {
 import { business, whatsappReady } from "../config/business";
 import Checkout from "./checkout/Checkout";
 import { Modal, Quantity } from "./ui/Controls";
+import CinematicHero from "./home/CinematicHero";
+import type { HeroMedia } from "../config/hero";
 
 const imagePositions: Record<string, string> = {
   classic: "0% 0%",
@@ -71,7 +72,7 @@ function ProductImage({ product }: { product: Product }) {
     />
   );
 }
-export default function Storefront() {
+export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
   const [intro, setIntro] = useState(false),
     [mobile, setMobile] = useState(false),
     [active, setActive] = useState("inicio"),
@@ -311,90 +312,7 @@ export default function Storefront() {
         )}
       </header>
       <main>
-        <section className="hero" id="inicio">
-          <div className="hero-watermark" aria-hidden="true">
-            NOIR
-          </div>
-          <div className="hero-content">
-            <div className="eyebrow">
-              <span className="orange-line" /> FOGO DE VERDADE. NADA A ESCONDER.
-            </div>
-            <h1>
-              O <em>fogo</em> tem
-              <br />
-              um novo
-              <br />
-              <span className="hero-last-line">
-                nome<span className="orange">.</span>
-              </span>
-            </h1>
-            <p>
-              O encontro entre a brasa, o tempo e a nossa obsessão por fazer um
-              burger extraordinário.
-            </p>
-            <div className="hero-buttons">
-              <a className="button" href="#cardapio">
-                ENCONTRE SEU BURGER <ArrowUpRight size={20} />
-              </a>
-              <a className="text-button" href="#essencia">
-                NOSSA ESSÊNCIA <ArrowRight size={17} />
-              </a>
-            </div>
-            <div className="hero-detail">
-              <span className="hero-detail-line" />
-              <span>ARTESANAL DO PRIMEIRO AO ÚLTIMO DETALHE.</span>
-            </div>
-          </div>
-          <div className="hero-editorial">
-            <div className="hero-photo-top">
-              <span>THE ORIGINAL / BRASA NOIR</span>
-              <Flame size={18} />
-            </div>
-            <div className="hero-photo-frame">
-              <Image
-                src="/images/hero-editorial.webp"
-                alt="Noir Classic no prato, imagem ilustrativa gerada por IA"
-                fill
-                sizes="(max-width:760px) 100vw, 48vw"
-                priority
-                style={{ objectFit: "cover" }}
-              />
-              <span className="hero-photo-note">
-                O SABOR COMEÇA MUITO ANTES DA PRIMEIRA MORDIDA.
-              </span>
-            </div>
-            <button
-              className="hero-product-link"
-              onClick={() => open(products[0])}
-            >
-              <span>
-                <small>CONHEÇA A ASSINATURA DA CASA</small>
-                <strong>
-                  NOIR CLASSIC <span>R$ 34,90</span>
-                </strong>
-              </span>
-              <span className="hero-product-arrow">
-                <ArrowUpRight size={24} />
-              </span>
-            </button>
-            <span className="art-disclosure">
-              IMAGEM ILUSTRATIVA GERADA POR IA
-            </span>
-          </div>
-          <div className="hero-bottom">
-            <a href="#destaques">
-              <span className="scroll-circle">
-                <ArrowDown size={17} />
-              </span>
-              <span>DESCUBRA SUA PRÓXIMA OBSESSÃO</span>
-            </a>
-            <div className="hero-promises">
-              <span>BLEND AUTORAL</span>
-              <span>FEITO NA BRASA</span>
-              <span>SEM ATALHOS</span>
-            </div>
-          </div>
-        </section>
+        <CinematicHero media={heroMedia} />
         <div className="manifesto-strip">
           <span>FIRE.</span>
           <Flame />

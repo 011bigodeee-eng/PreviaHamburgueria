@@ -59,7 +59,7 @@ imageUrl: '/images/noir-classic-real.webp',
 imageAlt: 'Noir Classic com cheddar, bacon e cebola caramelizada',
 ```
 
-Fotografias individuais usam `next/image` para otimização. Ajuste os textos de identificação de prévia quando as imagens forem substituídas. A imagem principal independente está em `public/images/hero-editorial.webp` e usa `next/image`. Substitua esse arquivo e ajuste o texto alternativo em `Storefront.tsx` quando houver uma fotografia real. Para substituir combo e essência, altere `.combo-food` e `.essence-food` em `src/app/redesign.css`, usando `background-size: cover` e `background-position: center` na imagem individual. Preserve os textos alternativos correspondentes em `Storefront.tsx`.
+Fotografias individuais usam `next/image` para otimização. Ajuste os textos de identificação de prévia quando as imagens forem substituídas. A imagem principal independente está em `public/images/brasa-noir-hero-poster.webp` e usa `next/image`. Substitua esse arquivo e ajuste o texto alternativo em `src/components/home/HeroVideo.tsx` quando houver uma fotografia real. Para substituir combo e essência, altere `.combo-food` e `.essence-food` em `src/app/redesign.css`, usando `background-size: cover` e `background-position: center` na imagem individual. Preserve os textos alternativos correspondentes em `Storefront.tsx`.
 
 Os estilos base e os controles ficam em `src/app/globals.css`. A direção visual editorial, com papel, carvão e cobre, está em `src/app/redesign.css`. Barlow Condensed e DM Sans são distribuídas localmente pelos pacotes Fontsource (licenças incluídas nos respectivos pacotes), sem requisições ao Google Fonts. A introdução pode ser pulada, aparece uma vez por sessão e respeita movimento reduzido. O favicon é `public/icon.svg`.
 
@@ -82,6 +82,7 @@ Os depoimentos são explicitamente demonstrativos. Não há notas verificadas, m
 npm run lint
 npm run typecheck
 npm run build
+npm run test:unit
 npm test
 ```
 
@@ -96,3 +97,13 @@ Antes de disponibilizar comercialmente: substituir as imagens provisórias, conf
 O arquivo `vercel.json` declara o framework Next.js, instalação com `npm ci`, build com `npm run build` e diretório de saída `.next`. Importe este repositório com a branch de produção `main`. Como o aplicativo está na raiz do repositório, deixe **Root Directory** vazio (raiz). Não selecione `src`, `public` ou um diretório de exportação estática.
 
 As variáveis comerciais são configuradas em **Settings → Environment Variables**. Após alterações, faça um novo deployment. Defina `NEXT_PUBLIC_SITE_URL` com a URL pública definitiva para compartilhamento. Se um deployment antigo foi criado antes da implementação do Next.js, publique novamente usando o commit mais recente da `main`.
+
+## Hero cinematográfico — integração pronta, vídeo pendente
+
+O hero agora integra uma cena sem moldura de card, com poster estático otimizado e entradas de texto em Motion. **O vídeo real da montagem camada por camada ainda não existe no repositório.** Não foi produzido um vídeo 4K nem uma montagem fictícia com CSS. O poster atual é a imagem de IA reaproveitada da versão anterior; não representa a sequência animada solicitada.
+
+Para ativar a cena, adicione `public/videos/brasa-noir-hero.webm` e/ou `public/videos/brasa-noir-hero.mp4` e faça novo build/deployment. O poster fica em `public/images/brasa-noir-hero-poster.webp`; ele já existe como fallback provisório e deve ser substituído por um frame correspondente ao material final. Os arquivos opcionais `brasa-noir-hero-mobile.webm` e `brasa-noir-hero-mobile.mp4` usam o mesmo diretório. O guia detalhado de produção, sequência dos ingredientes, codecs e otimização fica em `public/videos/README.md`.
+
+`src/lib/hero-media.server.ts` detecta no build apenas arquivos existentes e não vazios; arquivos ausentes não geram requisições 404. `src/config/hero.ts` centraliza os caminhos. `HeroVideo.tsx` mantém a imagem sob o vídeo até a reprodução, trata erros por fonte, tenta o formato alternativo, oferece pausa/reprodução e pausa fora da tela ou em aba oculta. Uma espera prolongada volta ao poster. Com movimento reduzido, nenhum elemento de vídeo é montado e nenhum arquivo é solicitado. O layout reserva espaço e usa `object-fit: contain` para não cortar ingredientes. A duração de 6–9 segundos, o realismo da montagem e o encaixe do loop precisam estar no arquivo final.
+
+Os estilos específicos estão em `src/app/cinematic-hero.css`; o restante do catálogo, carrinho e checkout foi preservado. `npm run test:unit` valida descoberta de arquivos e o ciclo de vida do player com APIs de mídia simuladas. Esses testes **não** validam decodificação de um vídeo real, sua qualidade cinematográfica ou o loop final. A suíte de navegador também confere o fallback sem requisições para vídeos ausentes.

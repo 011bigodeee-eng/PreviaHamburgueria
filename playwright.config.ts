@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
 export default defineConfig({
   testDir: "./tests",
+  testMatch: "**/*.spec.ts",
   workers: 2,
   use: {
     baseURL,

@@ -1,0 +1,282 @@
+/* The hero reserves its dimensions before loading any media. The scene is
+   integrated into the charcoal canvas instead of a framed product card. */
+.hero.cinematic-hero {
+  background: #080808;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 0;
+  min-height: 850px;
+  padding-top: 160px;
+  padding-bottom: 150px;
+}
+.cinematic-hero:before {
+  opacity: 0.02;
+}
+.cinematic-hero .hero-content {
+  animation: none;
+  z-index: 3;
+}
+.cinematic-hero .hero-watermark {
+  color: transparent;
+  -webkit-text-stroke-color: #eee8dd08;
+}
+.cinema-title-line {
+  display: block;
+}
+.cinematic-hero h1 {
+  font-size: clamp(76px, 7.6vw, 122px);
+  line-height: 0.96;
+}
+.cinematic-hero .hero-content > p {
+  max-width: 350px;
+}
+.cinematic-hero .hero-buttons {
+  column-gap: 21px;
+  row-gap: 22px;
+}
+.cinematic-hero .hero-buttons .button {
+  font-size: 10px;
+  padding: 18px 22px;
+  gap: 20px;
+}
+.cinematic-hero .hero-buttons .text-button {
+  font-size: 10px;
+  gap: 12px;
+}
+.cinema-stage {
+  position: relative;
+  align-self: center;
+  margin: 0 -9% 0 -10%;
+  min-width: 0;
+}
+.cinema-scene {
+  position: relative;
+  aspect-ratio: 1.18;
+  isolation: isolate;
+  background: #080808;
+  overflow: hidden;
+}
+.cinema-poster {
+  object-fit: contain;
+  z-index: 0;
+}
+.cinema-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.6s;
+  z-index: 1;
+  pointer-events: none;
+}
+.cinema-video.is-playing {
+  opacity: 1;
+}
+.cinema-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #080808, transparent 20%, transparent 85%, #080808),
+    linear-gradient(0deg, #080808, transparent 22%, transparent 80%, #080808);
+}
+.cinema-caption {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 7%;
+  z-index: 3;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #c4b7a5;
+  text-align: center;
+  line-height: 1.7;
+}
+.cinema-disclosure {
+  display: block;
+  color: #ada191;
+  font-size: 7px;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 8px;
+}
+.cinema-control {
+  position: absolute;
+  bottom: 14%;
+  right: 12%;
+  z-index: 4;
+  background: #080808df;
+  color: #ecdfce;
+  border: 1px solid #8f7254;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(8px);
+}
+.cinema-control:hover {
+  border-color: #e0ab7c;
+  background: #201810;
+}
+.cinema-unavailable {
+  position: absolute;
+  bottom: 14%;
+  left: 15%;
+  right: 15%;
+  z-index: 4;
+  font-size: 11px;
+  text-align: center;
+  color: #d2bfaa;
+  background: #080808e8;
+  padding: 10px;
+  line-height: 1.6;
+}
+@media (min-width: 1700px) {
+  .cinematic-hero h1 {
+    font-size: 128px;
+  }
+  .hero.cinematic-hero {
+    gap: 30px;
+  }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .hero.cinematic-hero {
+    padding: 145px 5% 130px;
+    min-height: 800px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cinematic-hero h1 {
+    font-size: 8.6vw;
+  }
+  .cinema-stage {
+    margin: 0 -10% 0 -8%;
+  }
+  .cinematic-hero .hero-buttons {
+    gap: 17px;
+  }
+  .cinematic-hero .hero-buttons .button {
+    font-size: 9px;
+    padding: 16px;
+    gap: 14px;
+  }
+  .cinematic-hero .hero-buttons .text-button {
+    font-size: 9px;
+  }
+}
+@media (max-width: 760px) {
+  .hero.cinematic-hero {
+    display: flex;
+    gap: 15px;
+    min-height: 0;
+    padding: 122px 6% 92px;
+  }
+  .cinematic-hero h1 {
+    font-size: clamp(70px, 18vw, 105px);
+    line-height: 0.96;
+  }
+  .cinematic-hero .hero-content > p {
+    font-size: 14px;
+    line-height: 1.85;
+    max-width: 335px;
+    margin: 23px 0;
+  }
+  .cinematic-hero .hero-buttons {
+    gap: 17px;
+    flex-wrap: wrap;
+  }
+  .cinematic-hero .hero-buttons .button {
+    font-size: 9px;
+    min-height: 52px;
+    padding: 16px;
+    gap: 15px;
+  }
+  .cinematic-hero .hero-buttons .text-button {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .cinema-stage {
+    width: calc(100% + 12%);
+    margin: 0 -6%;
+    align-self: center;
+  }
+  .cinema-scene {
+    aspect-ratio: 1.18;
+  }
+  .cinema-vignette {
+    background:
+      linear-gradient(
+        90deg,
+        #080808,
+        transparent 12%,
+        transparent 88%,
+        #080808
+      ),
+      linear-gradient(0deg, #080808, transparent 24%, transparent 82%, #080808);
+  }
+  .cinema-caption {
+    font-size: 7px;
+    bottom: 5%;
+    letter-spacing: 1px;
+  }
+  .cinema-disclosure {
+    font-size: 6px;
+    margin-top: 0;
+  }
+  .cinema-control {
+    bottom: 13%;
+    right: 12%;
+    font-size: 7px;
+    padding: 9px 12px;
+  }
+  .cinema-unavailable {
+    bottom: 13%;
+    font-size: 10px;
+  }
+  .cinematic-hero .hero-bottom {
+    bottom: 18px;
+  }
+}
+@media (max-width: 360px) {
+  .hero.cinematic-hero {
+    padding-top: 115px;
+  }
+  .cinematic-hero h1 {
+    font-size: 20vw;
+  }
+  .cinematic-hero .hero-buttons {
+    gap: 15px;
+  }
+  .cinematic-hero .hero-buttons .button {
+    font-size: 8px;
+    padding: 15px 12px;
+    gap: 10px;
+  }
+  .cinematic-hero .hero-buttons .text-button {
+    font-size: 8px;
+    gap: 7px;
+  }
+  .cinematic-hero .hero-content > p {
+    font-size: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-hero .hero-content [style] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cinema-video {
+    transition: none;
+  }
+}
+/* Feather the contained media itself, including its internal letterbox edges. */
+.cinema-poster,
+.cinema-video {
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 43%, transparent 79%);
+  mask-image: radial-gradient(ellipse at center, #000 43%, transparent 79%);
+}
