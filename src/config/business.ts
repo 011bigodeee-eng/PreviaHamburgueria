@@ -1,5 +1,5 @@
 export const business = {
-  name: "BRASA NOIR",
+  name: "Acordeon Hamburgueria",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
   address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || "",
   hours: process.env.NEXT_PUBLIC_BUSINESS_HOURS || "",

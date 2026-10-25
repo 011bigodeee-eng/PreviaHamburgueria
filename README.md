@@ -1,6 +1,6 @@
-# BRASA NOIR
+# Acordeon Hamburgueria
 
-Experiência de hamburgueria gourmet fictícia, construída em **Next.js App Router, React e TypeScript**, com CSS responsivo, animações leves e ícones Lucide. Não há backend nem processamento de pagamentos: o checkout prepara uma mensagem para o cliente enviar pelo WhatsApp.
+Experiência web da Acordeon Hamburgueria, construída em **Next.js App Router, React e TypeScript**, com CSS responsivo, animações leves e ícones Lucide. Não há backend nem processamento de pagamentos: o checkout prepara uma mensagem para o cliente enviar pelo WhatsApp.
 
 ## Executar
 
@@ -107,3 +107,5 @@ Para ativar a cena, adicione `public/videos/brasa-noir-hero.webm` e/ou `public/v
 `src/lib/hero-media.server.ts` detecta no build apenas arquivos existentes e não vazios; arquivos ausentes não geram requisições 404. `src/config/hero.ts` centraliza os caminhos. `HeroVideo.tsx` mantém a imagem sob o vídeo até a reprodução, trata erros por fonte, tenta o formato alternativo, oferece pausa/reprodução e pausa fora da tela ou em aba oculta. Uma espera prolongada volta ao poster. Com movimento reduzido, nenhum elemento de vídeo é montado e nenhum arquivo é solicitado. O layout reserva espaço e usa `object-fit: contain` para não cortar ingredientes. A duração de 6–9 segundos, o realismo da montagem e o encaixe do loop precisam estar no arquivo final.
 
 Os estilos específicos estão em `src/app/cinematic-hero.css`; o restante do catálogo, carrinho e checkout foi preservado. `npm run test:unit` valida descoberta de arquivos e o ciclo de vida do player com APIs de mídia simuladas. Esses testes **não** validam decodificação de um vídeo real, sua qualidade cinematográfica ou o loop final. A suíte de navegador também confere o fallback sem requisições para vídeos ausentes.
+
+A marca exibida no site, nos metadados e nas mensagens de pedido é **Acordeon Hamburgueria**, centralizada em `src/config/business.ts`. Identificadores técnicos antigos de arquivos e armazenamento foram preservados para manter compatibilidade com a configuração e os carrinhos existentes.

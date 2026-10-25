@@ -18,7 +18,7 @@ export default function CinematicHero({ media }: { media: HeroMedia }) {
   return (
     <section className="hero cinematic-hero" id="inicio">
       <div className="hero-watermark" aria-hidden="true">
-        NOIR
+        ACORDEON
       </div>
       <div className="hero-content">
         <motion.div className="eyebrow" {...reveal(0)}>

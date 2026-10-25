@@ -1,7 +1,7 @@
 {
   "name": "previahamburgueria",
   "version": "1.0.0",
-  "description": "BRASA NOIR — experiência gourmet com cardápio e checkout pelo WhatsApp",
+  "description": "Acordeon Hamburgueria — experiência gourmet com cardápio e checkout pelo WhatsApp",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",

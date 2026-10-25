@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Minus, Plus, X } from "lucide-react";
+import { business } from "../../config/business";
 export function Quantity({
   value,
   onChange,
@@ -96,7 +97,9 @@ export function Modal({
         tabIndex={-1}
       >
         <div className="modal-heading">
-          <span className="eyebrow">BRASA NOIR / {title}</span>
+          <span className="eyebrow">
+            {business.name} / {title}
+          </span>
           <button
             className="icon-button"
             aria-label="Fechar janela"

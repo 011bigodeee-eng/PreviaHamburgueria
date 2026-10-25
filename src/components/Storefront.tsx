@@ -244,7 +244,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
           <div className="intro-line" />
           <Flame size={36} />
           <div className="wordmark">
-            BRASA<span>NOIR</span>
+            ACORDEON<span>HAMBURGUERIA</span>
           </div>
           <p>FIRE. FLAVOR. OBSESSION.</p>
           <button onClick={() => setIntro(false)}>
@@ -253,11 +253,15 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
         </div>
       )}
       <header className={scrolled ? "scrolled" : ""}>
-        <a className="logo" href="#inicio" aria-label="Brasa Noir, início">
+        <a
+          className="logo"
+          href="#inicio"
+          aria-label={`${business.name}, início`}
+        >
           <Flame className="brand-flame" />
           <span>
-            BRASA<span className="logo-noir">NOIR</span>
-            <small>FIRE. FLAVOR. OBSESSION.</small>
+            ACORDEON
+            <small>HAMBURGUERIA</small>
           </span>
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
@@ -320,7 +324,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
           <Flame />
           <span>OBSESSION.</span>
           <Flame />
-          <span>BRASA NOIR.</span>
+          <span>ACORDEON.</span>
           <Flame />
         </div>
         <section className="section featured" id="destaques">
@@ -495,7 +499,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
               <em>RECEITA.</em>
             </h2>
             <p>
-              Na BRASA NOIR, cada detalhe importa. Do blend cuidadosamente
+              Na {business.name}, cada detalhe importa. Do blend cuidadosamente
               selecionado ao pão tostado no ponto certo, nossa obsessão é
               transformar ingredientes em experiências inesquecíveis.
             </p>
@@ -526,9 +530,9 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
               </h2>
             </div>
             <p className="section-note">
-              Uma marca fictícia.
+              Uma experiência de sabor.
               <br />
-              Uma obsessão muito bem imaginada.
+              Depoimentos demonstrativos.
             </p>
           </div>
           <div className="reviews-grid">
@@ -612,7 +616,7 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
               </p>
             </div>
             <p className="demo-note">
-              Marca fictícia · Prévia demonstrativa.
+              Prévia demonstrativa · Dados comerciais a configurar.
               <br />
               Entrega e retirada sujeitas à confirmação do estabelecimento.
             </p>
@@ -621,12 +625,14 @@ export default function Storefront({ heroMedia }: { heroMedia: HeroMedia }) {
       </main>
       <footer className="site-footer">
         <a href="#inicio" className="footer-wordmark">
-          BRASA<span>NOIR</span>
+          <span className="footer-brand">
+            ACORDEON<small>HAMBURGUERIA</small>
+          </span>
           <Flame />
         </a>
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} BRASA NOIR · PROJETO DEMONSTRATIVO
+            © {new Date().getFullYear()} {business.name} · PRÉVIA DEMONSTRATIVA
           </span>
           <span>FIRE. FLAVOR. OBSESSION.</span>
           <a href="#inicio">VOLTAR AO TOPO ↑</a>

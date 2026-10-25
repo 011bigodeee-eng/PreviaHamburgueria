@@ -9,6 +9,7 @@ import {
 } from "react";
 import { Pause, Play } from "lucide-react";
 import type { HeroMedia, HeroSource } from "../../config/hero";
+import { business } from "../../config/business";
 
 function useMediaQuery(query: string, serverValue: boolean) {
   const subscribe = useCallback(
@@ -33,7 +34,7 @@ export default function HeroVideo({ media }: { media: HeroMedia }) {
     <div
       className="cinema-scene"
       role="group"
-      aria-label="Cena gastronômica BRASA NOIR"
+      aria-label={`Cena gastronômica ${business.name}`}
     >
       <Image
         className="cinema-poster"

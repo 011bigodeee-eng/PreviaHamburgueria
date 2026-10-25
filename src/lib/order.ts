@@ -1,3 +1,4 @@
+import { business } from "../config/business";
 import { CartItem, extras, money, products, unitPrice } from "../data/menu";
 export function orderMessage(
   items: CartItem[],
@@ -6,7 +7,7 @@ export function orderMessage(
 ) {
   const subtotal = items.reduce((s, i) => s + unitPrice(i) * i.quantity, 0);
   return [
-    "🍔 NOVO PEDIDO — BRASA NOIR",
+    `🍔 NOVO PEDIDO — ${business.name.toUpperCase()}`,
     `Cliente: ${data.name}`,
     `Telefone: ${data.phone}`,
     `Tipo: ${data.type === "delivery" ? "Entrega" : "Retirada"}`,

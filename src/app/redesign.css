@@ -1465,3 +1465,71 @@ h2 {
     transform: none !important;
   }
 }
+/* Acordeon Hamburgueria wordmarks: accommodate the longer name at all widths. */
+.logo small {
+  font-size: 9px;
+  letter-spacing: 3.2px;
+  margin-top: 8px;
+}
+.intro .wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+.intro .wordmark span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  margin: 16px 0 24px;
+}
+.footer-wordmark .footer-brand {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  font-size: 14.5vw;
+  line-height: 0.9;
+}
+.footer-brand small {
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(11px, 1.4vw, 22px);
+  letter-spacing: 0.35em;
+  color: #b9a58b;
+  margin: 24px 0 0 5px;
+  line-height: 1.4;
+}
+.hero-watermark {
+  font-size: 17vw;
+  letter-spacing: -0.035em;
+}
+@media (max-width: 760px) {
+  .logo small {
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    margin-top: 7px;
+  }
+  .intro .wordmark {
+    font-size: 54px;
+  }
+  .intro .wordmark span {
+    font-size: 9px;
+    letter-spacing: 4px;
+  }
+  .footer-wordmark .footer-brand {
+    font-size: 15vw;
+  }
+  .footer-brand small {
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 14px;
+  }
+  .hero-watermark {
+    font-size: 26vw;
+  }
+  .modal-heading .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+    max-width: calc(100% - 44px);
+  }
+}
