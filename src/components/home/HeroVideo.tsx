@@ -38,7 +38,7 @@ export default function HeroVideo({ media }: { media: HeroMedia }) {
       <Image
         className="cinema-poster"
         src={media.poster}
-        alt="Hambúrguer com alface, tomate, carne e cebola roxa; frame do vídeo fornecido"
+        alt="Hambúrguer gourmet completo com iluminação quente, ilustração estática gerada por IA"
         fill
         sizes="(max-width: 760px) 100vw, 58vw"
         priority
