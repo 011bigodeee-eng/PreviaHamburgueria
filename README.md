@@ -90,3 +90,9 @@ Os testes usam Chromium do sistema quando disponível (`/usr/bin/chromium`), ou 
 A suíte cobre filtros, personalização, agrupamento e separação de itens, valores em centavos, quantidade, remoção, persistência, checkout de entrega/retirada, troco, frete definido e a confirmar, URL e mensagem de WhatsApp, introdução, teclado, axe e larguras de 320/390/430/1440 px. As capturas ficam no diretório ignorado `test-results/`. Os testes nunca enviam pedidos para um estabelecimento.
 
 Antes de disponibilizar comercialmente: substituir as imagens provisórias, configurar os dados reais, revisar produtos e preços e conferir a abertura do WhatsApp com o número autorizado. Publicar a aplicação é uma etapa separada.
+
+## Publicação na Vercel
+
+O arquivo `vercel.json` declara o framework Next.js, instalação com `npm ci`, build com `npm run build` e diretório de saída `.next`. Importe este repositório com a branch de produção `main`. Como o aplicativo está na raiz do repositório, deixe **Root Directory** vazio (raiz). Não selecione `src`, `public` ou um diretório de exportação estática.
+
+As variáveis comerciais são configuradas em **Settings → Environment Variables**. Após alterações, faça um novo deployment. Defina `NEXT_PUBLIC_SITE_URL` com a URL pública definitiva para compartilhamento. Se um deployment antigo foi criado antes da implementação do Next.js, publique novamente usando o commit mais recente da `main`.
