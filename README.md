@@ -59,9 +59,9 @@ imageUrl: '/images/noir-classic-real.webp',
 imageAlt: 'Noir Classic com cheddar, bacon e cebola caramelizada',
 ```
 
-Fotografias individuais usam `next/image` para otimização. Ajuste os textos de identificação de prévia quando as imagens forem substituídas. Para substituir hero, combo e essência, altere `.hero-food`, `.combo-food` e `.essence-food` em `src/app/globals.css`, usando `background-size: cover` e `background-position: center` na imagem individual. Preserve os textos alternativos correspondentes em `Storefront.tsx`.
+Fotografias individuais usam `next/image` para otimização. Ajuste os textos de identificação de prévia quando as imagens forem substituídas. A imagem principal independente está em `public/images/hero-editorial.webp` e usa `next/image`. Substitua esse arquivo e ajuste o texto alternativo em `Storefront.tsx` quando houver uma fotografia real. Para substituir combo e essência, altere `.combo-food` e `.essence-food` em `src/app/redesign.css`, usando `background-size: cover` e `background-position: center` na imagem individual. Preserve os textos alternativos correspondentes em `Storefront.tsx`.
 
-Cores, tipografia, breakpoints e animações ficam em `src/app/globals.css`. Barlow Condensed e DM Sans são distribuídas localmente pelos pacotes Fontsource (licenças incluídas nos respectivos pacotes), sem requisições ao Google Fonts. A introdução pode ser pulada, aparece uma vez por sessão e respeita movimento reduzido. O favicon é `public/icon.svg`.
+Os estilos base e os controles ficam em `src/app/globals.css`. A direção visual editorial, com papel, carvão e cobre, está em `src/app/redesign.css`. Barlow Condensed e DM Sans são distribuídas localmente pelos pacotes Fontsource (licenças incluídas nos respectivos pacotes), sem requisições ao Google Fonts. A introdução pode ser pulada, aparece uma vez por sessão e respeita movimento reduzido. O favicon é `public/icon.svg`.
 
 ## Organização
 

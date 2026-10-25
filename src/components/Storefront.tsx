@@ -312,55 +312,88 @@ export default function Storefront() {
       </header>
       <main>
         <section className="hero" id="inicio">
-          <div className="hero-image">
-            <div
-              className="food-visual hero-food"
-              role="img"
-              aria-label="Hambúrguer artesanal com cheddar e bacon, imagem ilustrativa gerada por IA"
-            />
-            <div className="photo-credit">
-              IMAGEM ILUSTRATIVA · GERADA POR IA
-            </div>
+          <div className="hero-watermark" aria-hidden="true">
+            NOIR
           </div>
-          <div className="hero-shade" />
           <div className="hero-content">
             <div className="eyebrow">
-              <span className="orange-line" /> ARTESANAL BURGER EXPERIENCE
+              <span className="orange-line" /> FOGO DE VERDADE. NADA A ESCONDER.
             </div>
             <h1>
-              O <em>FOGO</em> TEM
+              O <em>fogo</em> tem
               <br />
-              UM NOVO NOME<span className="orange">.</span>
+              um novo
+              <br />
+              <span className="hero-last-line">
+                nome<span className="orange">.</span>
+              </span>
             </h1>
             <p>
-              Carne selecionada, fogo de verdade e combinações que desafiam o
-              comum. Descubra o sabor que não aceita ser esquecido.
+              O encontro entre a brasa, o tempo e a nossa obsessão por fazer um
+              burger extraordinário.
             </p>
             <div className="hero-buttons">
               <a className="button" href="#cardapio">
-                EXPLORAR CARDÁPIO <ArrowUpRight size={18} />
+                ENCONTRE SEU BURGER <ArrowUpRight size={20} />
               </a>
-              <a className="text-button" href="#destaques">
-                FAZER MEU PEDIDO <ArrowRight size={18} />
+              <a className="text-button" href="#essencia">
+                NOSSA ESSÊNCIA <ArrowRight size={17} />
               </a>
             </div>
             <div className="hero-detail">
-              <Flame size={17} />
-              <span>FEITO NO FOGO. SERVIDO COM ATITUDE.</span>
+              <span className="hero-detail-line" />
+              <span>ARTESANAL DO PRIMEIRO AO ÚLTIMO DETALHE.</span>
             </div>
+          </div>
+          <div className="hero-editorial">
+            <div className="hero-photo-top">
+              <span>THE ORIGINAL / BRASA NOIR</span>
+              <Flame size={18} />
+            </div>
+            <div className="hero-photo-frame">
+              <Image
+                src="/images/hero-editorial.webp"
+                alt="Noir Classic no prato, imagem ilustrativa gerada por IA"
+                fill
+                sizes="(max-width:760px) 100vw, 48vw"
+                priority
+                style={{ objectFit: "cover" }}
+              />
+              <span className="hero-photo-note">
+                O SABOR COMEÇA MUITO ANTES DA PRIMEIRA MORDIDA.
+              </span>
+            </div>
+            <button
+              className="hero-product-link"
+              onClick={() => open(products[0])}
+            >
+              <span>
+                <small>CONHEÇA A ASSINATURA DA CASA</small>
+                <strong>
+                  NOIR CLASSIC <span>R$ 34,90</span>
+                </strong>
+              </span>
+              <span className="hero-product-arrow">
+                <ArrowUpRight size={24} />
+              </span>
+            </button>
+            <span className="art-disclosure">
+              IMAGEM ILUSTRATIVA GERADA POR IA
+            </span>
           </div>
           <div className="hero-bottom">
             <a href="#destaques">
-              <span>DESÇA. O SABOR ESTÁ SÓ COMEÇANDO.</span>
-              <ArrowDown size={16} />
+              <span className="scroll-circle">
+                <ArrowDown size={17} />
+              </span>
+              <span>DESCUBRA SUA PRÓXIMA OBSESSÃO</span>
             </a>
-            <span className="hero-edition">
-              EST. 2026 <span> / </span> BURGERS SEM CONCESSÕES
-            </span>
+            <div className="hero-promises">
+              <span>BLEND AUTORAL</span>
+              <span>FEITO NA BRASA</span>
+              <span>SEM ATALHOS</span>
+            </div>
           </div>
-          <span className="hero-side">
-            NÃO É APENAS UM BURGER. É UMA OBSESSÃO.
-          </span>
         </section>
         <div className="manifesto-strip">
           <span>FIRE.</span>
