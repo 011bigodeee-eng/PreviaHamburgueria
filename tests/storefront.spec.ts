@@ -268,7 +268,56 @@ test("fluxo de compra mobile e recuperação de armazenamento inválido", async 
   ).toBe(true);
 });
 
-test("hero cinematográfico sem mídia usa poster e não solicita vídeos inexistentes", async ({
+for (const width of [1440, 390])
+  test(`vídeo real reproduz, pausa e retoma em ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("/");
+    await page.locator(".cinema-scene").scrollIntoViewIfNeeded();
+    const video = page.locator(".cinema-video");
+    await expect
+      .poll(() =>
+        video.evaluate(
+          (v: HTMLVideoElement) =>
+            !v.paused && v.currentTime > 0.15 && v.readyState >= 2,
+        ),
+      )
+      .toBe(true);
+    expect(
+      await video.evaluate((v: HTMLVideoElement) => v.duration),
+    ).toBeGreaterThanOrEqual(6);
+    expect(
+      await video.evaluate((v: HTMLVideoElement) => v.duration),
+    ).toBeLessThanOrEqual(9);
+    expect(
+      await video.evaluate(
+        (v: HTMLVideoElement) => v.muted && v.loop && v.playsInline,
+      ),
+    ).toBe(true);
+    await page.getByRole("button", { name: "Pausar vídeo do hero" }).click();
+    await expect
+      .poll(() => video.evaluate((v: HTMLVideoElement) => v.paused))
+      .toBe(true);
+    await page
+      .getByRole("button", { name: "Reproduzir vídeo do hero" })
+      .click();
+    await expect
+      .poll(() => video.evaluate((v: HTMLVideoElement) => !v.paused))
+      .toBe(true);
+    await page.locator("#contato").scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => video.evaluate((v: HTMLVideoElement) => v.paused))
+      .toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+
+test("movimento reduzido mantém frame do vídeo sem baixar os arquivos", async ({
   page,
 }) => {
   const videoRequests: string[] = [];
@@ -276,21 +325,49 @@ test("hero cinematográfico sem mídia usa poster e não solicita vídeos inexis
     if (/\.(mp4|webm)(\?|$)/.test(request.url()))
       videoRequests.push(request.url());
   });
-  await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   await page.waitForLoadState("networkidle");
   await expect(page.locator(".cinema-poster")).toBeVisible();
   await expect(page.locator(".cinema-caption")).toContainText(
-    "PRÉVIA ESTÁTICA",
+    "MOVIMENTO REDUZIDO",
   );
-  await expect(page.locator(".cinema-scene video")).toHaveCount(0);
+  await expect(page.locator(".cinema-video")).toHaveCount(0);
   expect(videoRequests).toEqual([]);
+});
+
+test("MP4 real assume a reprodução quando WebM falha", async ({ page }) => {
+  await page.route("**/videos/*.webm", (route) =>
+    route.fulfill({ status: 404, body: "Fixture: WebM unavailable" }),
+  );
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.locator(".cinema-scene").scrollIntoViewIfNeeded();
+  const video = page.locator(".cinema-video");
+  await expect
+    .poll(() =>
+      video.evaluate(
+        (v: HTMLVideoElement) =>
+          v.currentSrc.endsWith(".mp4") && !v.paused && v.currentTime > 0.1,
+      ),
+    )
+    .toBe(true);
+});
+
+test("falha dos dois formatos mantém poster e avisa sem travar o cardápio", async ({
+  page,
+}) => {
+  await page.route("**/videos/*", (route) =>
+    route.fulfill({ status: 404, body: "Fixture: unavailable" }),
+  );
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.locator(".cinema-scene").scrollIntoViewIfNeeded();
   await expect(
-    page.getByRole("link", { name: "EXPLORAR CARDÁPIO", exact: true }),
-  ).toHaveAttribute("href", "#cardapio");
-  await expect(
-    page.getByRole("link", { name: "FAZER MEU PEDIDO", exact: true }),
-  ).toHaveAttribute("href", "#cardapio");
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".cinema-scene video")).toHaveCount(0);
+    page.getByText("Cena indisponível. Exibindo imagem estática."),
+  ).toBeVisible();
+  await expect(page.locator(".cinema-poster")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Adicionar Noir Classic", exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toBeVisible();
 });

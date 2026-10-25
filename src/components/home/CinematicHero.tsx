@@ -57,7 +57,7 @@ export default function CinematicHero({ media }: { media: HeroMedia }) {
       <div className="cinema-stage">
         <HeroVideo media={media} />
         <span className="cinema-disclosure">
-          POSTER ILUSTRATIVO GERADO POR IA
+          MONTAGEM ARTESANAL · BRASA NOIR
         </span>
       </div>
       <div className="hero-bottom">

@@ -277,6 +277,53 @@
 /* Feather the contained media itself, including its internal letterbox edges. */
 .cinema-poster,
 .cinema-video {
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 43%, transparent 79%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 43%,
+    transparent 79%
+  );
   mask-image: radial-gradient(ellipse at center, #000 43%, transparent 79%);
+}
+/* Match the supplied 16:9 footage, retaining its complete original framing. */
+.cinema-scene {
+  aspect-ratio: 16 / 9;
+}
+.cinema-poster,
+.cinema-video {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+.cinema-vignette {
+  background:
+    linear-gradient(90deg, #080808, transparent 12%, transparent 90%, #080808),
+    linear-gradient(0deg, #080808, transparent 12%, transparent 90%, #080808);
+}
+.cinema-caption {
+  bottom: 3%;
+}
+@media (max-width: 760px) {
+  .cinema-scene {
+    aspect-ratio: 16 / 9;
+  }
+  .cinema-vignette {
+    background:
+      linear-gradient(90deg, #080808, transparent 7%, transparent 93%, #080808),
+      linear-gradient(0deg, #080808, transparent 10%, transparent 93%, #080808);
+  }
+  .cinema-caption {
+    bottom: 2%;
+    font-size: 6px;
+  }
 }
